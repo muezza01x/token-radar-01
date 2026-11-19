@@ -263,7 +263,7 @@ function openDetail(slug, kind) {
     dcell('Listed', r.listed_at ?? 'unknown'),
     dcell('Tokenless age', ageText(r.age_days)));
 
-  let breakdown = null, formula = null;
+  let breakdown = null;
   if (!isLive) {
     const m = r.model;
     grid.append(
@@ -283,7 +283,9 @@ function openDetail(slug, kind) {
     h('div', { class: 'dsection', text: isLive ? 'Post-token plan (stake / LP / govern)' : 'Farm plan (pre-launch)' }),
     farmList(r.farm_steps));
 
-  d.replaceChildren(head, valueBox, grid, breakdown, formula, plan);
+  d.replaceChildren(head, h('div', { class: 'dcols' },
+    h('div', { class: 'dcol' }, valueBox, grid, breakdown),
+    h('div', { class: 'dcol' }, plan)));
   d.hidden = false;
   $('backdrop').hidden = false;
   d.querySelector('.close').focus();

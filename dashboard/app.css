@@ -183,11 +183,15 @@ table.board { width: 100%; border-collapse: collapse; font-size: 14px; }
 /* ---- detail drawer ---- */
 .detail-backdrop { position: fixed; inset: 0; background: rgba(4, 8, 16, .66); backdrop-filter: blur(2px); z-index: 40; }
 .detail {
-  position: fixed; top: 0; right: 0; height: 100%; width: min(560px, 100%);
+  position: fixed; top: 0; right: 0; height: 100%; width: min(940px, 100%);
   background: var(--panel); border-left: 1px solid var(--line);
   box-shadow: -20px 0 60px rgba(0, 0, 0, .5); z-index: 50;
-  overflow-y: auto; padding: calc(var(--sp) * 3);
+  overflow-y: auto; padding: calc(var(--sp) * 2);
 }
+.dcols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: calc(var(--sp) * 3); align-items: start; }
+.dcol { min-width: 0; }
+.dcol .dsection:first-child { margin-top: 0; }
+@media (max-width: 860px) { .dcols { grid-template-columns: 1fr; } }
 .detail h2 { margin: 0 0 4px; font-size: 22px; }
 .detail .dslug { font-family: var(--mono); font-size: 12px; color: var(--faint); }
 .detail .close {
@@ -201,15 +205,15 @@ table.board { width: 100%; border-collapse: collapse; font-size: 14px; }
 .dvalue {
   background: linear-gradient(180deg, var(--panel-2), var(--ink));
   border: 1px solid var(--green-dim); border-radius: var(--r);
-  padding: calc(var(--sp) * 2); margin: calc(var(--sp) * 2) 0;
+  padding: calc(var(--sp) * 1.5); margin: calc(var(--sp) * 1.5) 0;
 }
 .dvalue .big { font-family: var(--mono); font-size: 30px; font-weight: 700; color: var(--green); }
 .dvalue .lbl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
-.dgrid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp); margin: calc(var(--sp) * 2) 0; }
+.dgrid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp); margin: calc(var(--sp) * 1.5) 0; }
 .dcell { background: var(--ink); border: 1px solid var(--line-soft); border-radius: var(--r); padding: var(--sp) calc(var(--sp) * 1.5); }
 .dcell .k { font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: .4px; }
 .dcell .v { font-family: var(--mono); font-size: 15px; color: var(--text); margin-top: 2px; }
-.dsection { margin: calc(var(--sp) * 3) 0 calc(var(--sp) * 1.5); font-size: 13px; text-transform: uppercase; letter-spacing: .6px; color: var(--cyan); font-weight: 700; }
+.dsection { margin: calc(var(--sp) * 2) 0 var(--sp); font-size: 13px; text-transform: uppercase; letter-spacing: .6px; color: var(--cyan); font-weight: 700; }
 
 /* breakdown bars */
 .break { display: flex; flex-direction: column; gap: var(--sp); }
@@ -221,19 +225,19 @@ table.board { width: 100%; border-collapse: collapse; font-size: 14px; }
 .formula { font-family: var(--mono); font-size: 12px; color: var(--muted); background: var(--ink); border: 1px solid var(--line-soft); border-radius: var(--r); padding: calc(var(--sp) * 1.5); margin-top: var(--sp); overflow-x: auto; }
 
 /* farm steps */
-.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: calc(var(--sp) * 1.5); counter-reset: step; }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp); counter-reset: step; }
 .steps li {
   position: relative; background: var(--ink); border: 1px solid var(--line-soft);
-  border-radius: var(--r); padding: calc(var(--sp) * 1.5) calc(var(--sp) * 1.5) calc(var(--sp) * 1.5) calc(var(--sp) * 5);
-  font-size: 13.5px;
+  border-radius: var(--r); padding: var(--sp) var(--sp) var(--sp) calc(var(--sp) * 4.5);
+  font-size: 13px; line-height: 1.45;
 }
 .steps li::before {
   counter-increment: step; content: counter(step);
-  position: absolute; left: calc(var(--sp) * 1.5); top: calc(var(--sp) * 1.5);
+  position: absolute; left: var(--sp); top: var(--sp);
   width: 22px; height: 22px; border-radius: 50%; background: var(--green-dim); color: var(--green);
   font-family: var(--mono); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;
 }
-.steps .ct { display: flex; gap: var(--sp); flex-wrap: wrap; margin-top: 6px; }
+.steps .ct { display: flex; gap: var(--sp); flex-wrap: wrap; margin-top: 4px; }
 .steps .cost, .steps .time { font-family: var(--mono); font-size: 11px; padding: 1px 8px; border-radius: 999px; }
 .steps .cost { color: var(--amber); background: rgba(245, 185, 66, .1); border: 1px solid #6b5320; }
 .steps .time { color: var(--cyan); background: rgba(92, 200, 255, .1); border: 1px solid #2b5f7a; }
