@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+
+<header class="top">
+  <div class="brand">
+    <span class="dot" aria-hidden="true"></span>
+    <div>
+      <h1>Token&nbsp;Radar</h1>
+      <p class="tag">Pre-token protocols, ranked by what a launch would be worth.</p>
+    </div>
+  </div>
+  <div class="meta">
+    <span class="chip" id="asof">snapshot —</span>
+    <span class="chip" id="modelver">model —</span>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Views">
+  <button class="tab is-on" id="tab-board" role="tab" aria-selected="true" data-tab="board">Radar board</button>
+  <button class="tab" id="tab-live" role="tab" aria-selected="false" data-tab="live">Already trading</button>
+  <button class="tab" id="tab-model" role="tab" aria-selected="false" data-tab="model">The model</button>
+</nav>
+
+<section class="stats" id="stats" aria-label="Summary"></section>
+
+<section class="toolbar" id="toolbar" aria-label="Filters">
+  <label class="search">
+    <span class="sr">Search protocols</span>
+    <input id="q" type="search" placeholder="Search name or slug…" autocomplete="off" spellcheck="false">
+  </label>
+  <label class="sel">Category
+    <select id="fcat"><option value="">All categories</option></select>
+  </label>
+  <label class="sel">Chain
+    <select id="fchain"><option value="">All chains</option></select>
+  </label>
+  <label class="sel" id="scope-wrap">Scope
+    <select id="fscope">
+      <option value="all">All rows</option>
+      <option value="watchlist">Watchlist only</option>
+      <option value="early">Early (below floor)</option>
+    </select>
+  </label>
+  <button class="reset" id="reset" type="button">Reset</button>
+  <span class="count" id="count"></span>
+</section>
+
+<main id="board" tabindex="-1">
+  <div class="table-wrap" id="table-wrap">
+    <table class="board" id="table">
+      <thead id="thead"></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <p class="empty" id="empty" hidden>No protocols match these filters.</p>
+  </div>
+
+  <div class="model-view" id="model-view" hidden></div>
+</main>
+
+<div class="detail-backdrop" id="backdrop" hidden></div>
+<aside class="detail" id="detail" role="dialog" aria-modal="true" aria-label="Protocol detail" hidden></aside>
+
+<footer class="foot">
+  <p id="source-line"></p>
+  <p class="fine">Implied value is this radar's own claim from the sealed snapshot, not a prediction of whether or when a token issues, and not advice. A protocol that records no token may still have one its DefiLlama record does not carry. Offline page — no network calls.</p>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

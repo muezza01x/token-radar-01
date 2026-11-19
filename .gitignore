@@ -1,0 +1,5 @@
+# Generated run output (reproduce with: MAKEFUN_OUTPUT_DIR=out node main.ts --input <snapshot>)
+out/
+out2/
+node_modules/
+*.log
